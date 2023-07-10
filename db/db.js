@@ -1,5 +1,10 @@
 import pkg from 'pg';
 const {Pool} = pkg;
+import { config } from 'dotenv';
+config();
+
+
+
 
 // create a new pool using the connection string
 const pool = new Pool({
