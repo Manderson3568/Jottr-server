@@ -10,7 +10,8 @@ export async function loginUser(req, res) {
     
             const payload= {
               "id":user.id,
-              'name': user.name
+              'name': user.name,
+              'admin': user.admin
             }
 
             jwt.sign(payload, "shhh", {expiresIn:"10h"}, (err,token)=>{
