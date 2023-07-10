@@ -18,9 +18,9 @@ CREATE TABLE users (
 -- Create the resources table
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY,
-  language TEXT NOT NULL,
+  heading TEXT NOT NULL,
   user_id INTEGER REFERENCES users(id),
-  topics TEXT NOT NULL,
+  tags TEXT NOT NULL,
   type TEXT NOT NULL,
   youtube_id TEXT NOT NULL
 );
@@ -29,10 +29,10 @@ CREATE TABLE resources (
 CREATE TABLE notes (
   id SERIAL PRIMARY KEY,
   timestamp INTEGER NOT NULL,
-  heading TEXT NOT NULL,
+  title TEXT NOT NULL,
   content TEXT NOT NULL,
-  language TEXT NOT NULL,
-  topic TEXT NOT NULL,
+  heading TEXT NOT NULL,
+  tags TEXT NOT NULL,
   user_id INTEGER REFERENCES users(id),
   resource_id INTEGER REFERENCES resources(id)
 );
@@ -45,7 +45,7 @@ INSERT INTO users (email, name, password) VALUES
 ('test4@test.com', 'test4', '123456');
 
 -- Insert records into resources
-INSERT INTO resources (language, user_id, topics, type, youtube_id) VALUES
+INSERT INTO resources (heading, user_id, tags, type, youtube_id) VALUES
 ('Python', 1, 'Topic1', 'Type1', 'QDvQsATJ2bg'),
 ('Django', 1, 'Topic2', 'Type2', 'QDvQsATJ2bg'),
 ('JavaScript', 2, 'Topic1', 'Type1', 'QDvQsATJ2bg'),
@@ -56,7 +56,7 @@ INSERT INTO resources (language, user_id, topics, type, youtube_id) VALUES
 ('.NET', 4, 'Topic2', 'Type2', 'QDvQsATJ2bg');
 
 -- Insert records into notes
-INSERT INTO notes (timestamp, heading, content, language, topic, user_id, resource_id) VALUES
+INSERT INTO notes (timestamp, title, content, heading, tags, user_id, resource_id) VALUES
 (100, 'Heading1', 'Content1', 'Python', 'Topic1', 1, 1),
 (120, 'Heading2', 'Content2', 'Python', 'Topic1', 1, 1),
 (140, 'Heading3', 'Content3', 'Python', 'Topic1', 1, 1),
