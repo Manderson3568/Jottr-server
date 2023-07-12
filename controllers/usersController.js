@@ -1,12 +1,15 @@
 import jwt from "jsonwebtoken";
 import pool from '../db/db.js';
+import bcrypt from "bcryptjs"
+import { hashPassword } from "../utils/bcrypt.js";
 
 export async function loginUser(req, res) {
     try {
         const result = await pool.query('SELECT * FROM users WHERE email= $1',[req.body.email]);
         let user = result.rows[0]
         console.log("user" ,req.body)
-        if(user.password === req.body.password){
+        const validPassword = await bcrypt.compare(req.body.password, user.password)
+        if(validPassword){
             console.log(user)    
             const payload= {
               "id":user.id,
@@ -43,7 +46,8 @@ export async function loginUser(req, res) {
           })
         } else {
           try {
-            const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1,$2,$3)',[name,email,password]);
+            const hashedPassword = await hashPassword(password);
+            const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1,$2,$3)',[name,email,hashedPassword]);
             res.status(200)
             res.json({
               message: "Signed up successfully",

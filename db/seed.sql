@@ -39,10 +39,10 @@ CREATE TABLE notes (
 
 -- Insert records into users
 INSERT INTO users (email, name, password) VALUES
-('test1@test.com', 'test1', '123456'),
-('test2@test.com', 'test2', '123456'),
-('test3@test.com', 'test3', '123456'),
-('test4@test.com', 'test4', '123456');
+('test1@test.com', 'test1', "$2a$10$y8a2Vdufcpk2G7T54ul./ePo7l.TYzQ010qqBtie/q/sfBCbHyEKi"),
+('test2@test.com', 'test2', "$2a$10$y8a2Vdufcpk2G7T54ul./ePo7l.TYzQ010qqBtie/q/sfBCbHyEKi"),
+('test3@test.com', 'test3', "$2a$10$y8a2Vdufcpk2G7T54ul./ePo7l.TYzQ010qqBtie/q/sfBCbHyEKi"),
+('test4@test.com', 'test4', "$2a$10$y8a2Vdufcpk2G7T54ul./ePo7l.TYzQ010qqBtie/q/sfBCbHyEKi");
 
 -- Insert records into resources
 INSERT INTO resources (heading, user_id, tags, type, youtube_id) VALUES
