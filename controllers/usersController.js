@@ -31,3 +31,19 @@ export async function loginUser(req, res) {
     };
     
   
+    export async function signupUser(req, res) {
+      try {
+          const result = await pool.query('INSERT INTO users (name, email, password) VALUES ($1,$2,$3)',[req.body.name, req.body.email, req.body.password]);
+          console.log(result)
+          res.json({
+            message: "Signed up successfully",
+            user: {
+              name: result.name,
+              email: result.email,
+              admin: result.admin
+            }
+          })
+        } catch (err) {
+          console.log(err);
+        }
+      };
